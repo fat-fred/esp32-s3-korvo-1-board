@@ -31,7 +31,6 @@
 #include "board_pins_config.h"
 #include "display_service.h"
 #include "esp_peripherals.h"
-#include "periph_lcd.h"
 #include "periph_sdcard.h"
 
 #ifdef __cplusplus
@@ -92,23 +91,6 @@ esp_err_t audio_board_set_volume(audio_board_handle_t board_handle, int volume);
  *     - Others, fail
  */
 esp_err_t audio_board_get_volume(audio_board_handle_t board_handle, int *volume);
-
-/**
- * @brief Initialize lcd peripheral
- *
- * @param set The handle of esp_periph_set_handle_t
- * @param cb  The `on_color_trans_done` callback in `esp_lcd_panel_io_spi_config_t`
- *
- * @return The `esp_lcd_panel_handle_t` handle
- */
-void *audio_board_lcd_init(esp_periph_set_handle_t set, void *cb);
-
-/**
- * @brief Initialize led peripheral and display service
- *
- * @return The audio display service handle
- */
-display_service_handle_t audio_board_blue_led_init(void);
 
 /**
  * @brief Initialize key peripheral
