@@ -27,25 +27,6 @@
 
 // clang-format off
 /**
- * @brief LCD SCREEN Function Definition
- */
-#define FUNC_LCD_SCREEN_EN          (1)
-#define LCD_CTRL_GPIO               GPIO_NUM_47
-#define LCD_RST_GPIO                GPIO_NUM_48
-#define LCD_DC_GPIO                 GPIO_NUM_4
-#define LCD_CS_GPIO                 GPIO_NUM_5
-#define LCD_CLK_GPIO                GPIO_NUM_7
-#define LCD_MOSI_GPIO               GPIO_NUM_6
-// The LCD pixel number in horizontal and vertical
-#define LCD_H_RES                   (320)
-#define LCD_V_RES                   (240)
-#define LCD_SWAP_XY                 (false)
-#define LCD_MIRROR_X                (true)
-#define LCD_MIRROR_Y                (true)
-#define LCD_COLOR_INV               (false)
-#define LCD_COLOR_SPACE             ESP_LCD_COLOR_SPACE_BGR
-
-/**
  * @brief SDCARD Function Definition
  */
 #define FUNC_SDCARD_EN              (1)
@@ -64,14 +45,6 @@
 #define ESP_SD_PIN_D7               (-1)
 #define ESP_SD_PIN_CD               (-1)
 #define ESP_SD_PIN_WP               (-1)
-
-/**
- * @brief LCD TOUCH PANEL Function Definition
- */
-#define FUNC_LCD_TOUCH_EN          (1)
-#define TOUCH_PANEL_SWAP_XY        (0)
-#define TOUCH_PANEL_INVERSE_X      (1)
-#define TOUCH_PANEL_INVERSE_Y      (0)
 
 /**
  * @brief Audio Codec Chip Function Definition
