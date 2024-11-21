@@ -31,7 +31,7 @@
 #include "audio_mem.h"
 #include "board.h"
 
-static const char *TAG = "ESP32_S3_BOX_3";
+static const char *TAG = "ESP32_S3_KORVO_1";
 
 esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config) {
   AUDIO_NULL_CHECK(TAG, i2c_config, return ESP_FAIL);
