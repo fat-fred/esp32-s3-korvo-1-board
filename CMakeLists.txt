@@ -3,11 +3,11 @@ set(COMPONENT_REQUIRES)
 set(COMPONENT_PRIV_REQUIRES audio_sal audio_hal esp_dispatcher esp_peripherals display_service)
 
 if(CONFIG_AUDIO_BOARD_CUSTOM)
-message(STATUS "Current board name is ESP32-S3-Box-3")
-list(APPEND COMPONENT_ADD_INCLUDEDIRS ./esp32_s3_box_3)
+message(STATUS "Current board name is ESP32-S3-Korvo-1")
+list(APPEND COMPONENT_ADD_INCLUDEDIRS ./esp32_s3_korvo_1)
 set(COMPONENT_SRCS
-./esp32_s3_box_3/board.c
-./esp32_s3_box_3/board_pins_config.c
+./esp32_s3_korvo_1/board.c
+./esp32_s3_korvo_1/board_pins_config.c
 )
 endif()
 
