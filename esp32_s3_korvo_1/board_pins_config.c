@@ -97,17 +97,36 @@ int8_t get_pa_enable_gpio(void) { return PA_ENABLE_GPIO; }
 
 // adc button id
 
-int8_t get_input_rec_id(void) { return BUTTON_REC_ID; }
+int8_t get_input_rec_id(void)
+{
+    return BUTTON_REC_ID;
+}
 
-int8_t get_input_mode_id(void) { return BUTTON_MODE_ID; }
+int8_t get_input_mode_id(void)
+{
+    return BUTTON_MODE_ID;
+}
 
-int8_t get_input_set_id(void) { return BUTTON_SET_ID; }
+int8_t get_input_set_id(void)
+{
+    return BUTTON_SET_ID;
+}
 
-int8_t get_input_play_id(void) { return BUTTON_PLAY_ID; }
+int8_t get_input_play_id(void)
+{
+    return BUTTON_PLAY_ID;
+}
 
-int8_t get_input_volup_id(void) { return BUTTON_VOLUP_ID; }
+int8_t get_input_volup_id(void)
+{
+    return BUTTON_VOLUP_ID;
+}
 
-int8_t get_input_voldown_id(void) { return BUTTON_VOLDOWN_ID; }
+int8_t get_input_voldown_id(void)
+{
+    return BUTTON_VOLDOWN_ID;
+}
+
 
 // led pins
 
