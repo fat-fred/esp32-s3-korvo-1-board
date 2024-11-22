@@ -27,6 +27,26 @@
 
 // clang-format off
 /**
+ * @brief SDCARD Function Definition
+ */
+#define FUNC_SDCARD_EN              (1)
+#define SDCARD_OPEN_FILE_NUM_MAX    (5)
+#define SDCARD_INTR_GPIO            (-1)
+#define SDCARD_PWR_CTRL             GPIO_NUM_43
+#define ESP_SD_PIN_CLK              GPIO_NUM_11
+#define ESP_SD_PIN_CMD              GPIO_NUM_14
+#define ESP_SD_PIN_D0               GPIO_NUM_9
+#define ESP_SD_PIN_D1               GPIO_NUM_13
+#define ESP_SD_PIN_D2               GPIO_NUM_42
+#define ESP_SD_PIN_D3               GPIO_NUM_12
+#define ESP_SD_PIN_D4               (-1)
+#define ESP_SD_PIN_D5               (-1)
+#define ESP_SD_PIN_D6               (-1)
+#define ESP_SD_PIN_D7               (-1)
+#define ESP_SD_PIN_CD               (-1)
+#define ESP_SD_PIN_WP               (-1)
+
+/**
  * @brief Audio Codec Chip Function Definition
  */
 #define FUNC_AUDIO_CODEC_EN         (1)
