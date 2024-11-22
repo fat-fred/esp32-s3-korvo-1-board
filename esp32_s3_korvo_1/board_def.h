@@ -29,34 +29,37 @@
 /**
  * @brief SDCARD Function Definition
  */
-#define FUNC_SDCARD_EN              (1)
-#define SDCARD_OPEN_FILE_NUM_MAX    (5)
-#define SDCARD_INTR_GPIO            (-1)
-#define SDCARD_PWR_CTRL             GPIO_NUM_43
-#define ESP_SD_PIN_CLK              GPIO_NUM_11
-#define ESP_SD_PIN_CMD              GPIO_NUM_14
-#define ESP_SD_PIN_D0               GPIO_NUM_9
-#define ESP_SD_PIN_D1               GPIO_NUM_13
-#define ESP_SD_PIN_D2               GPIO_NUM_42
-#define ESP_SD_PIN_D3               GPIO_NUM_12
-#define ESP_SD_PIN_D4               (-1)
-#define ESP_SD_PIN_D5               (-1)
-#define ESP_SD_PIN_D6               (-1)
-#define ESP_SD_PIN_D7               (-1)
-#define ESP_SD_PIN_CD               (-1)
-#define ESP_SD_PIN_WP               (-1)
+#define FUNC_SDCARD_EN             (1)
+#define SDCARD_OPEN_FILE_NUM_MAX    5
+#define SDCARD_INTR_GPIO            -1
+#define SDCARD_PWR_CTRL             -1
+
+#define ESP_SD_PIN_CLK              GPIO_NUM_18
+#define ESP_SD_PIN_CMD              GPIO_NUM_17
+#define ESP_SD_PIN_D0               GPIO_NUM_16
+#define ESP_SD_PIN_D1               -1
+#define ESP_SD_PIN_D2               -1
+#define ESP_SD_PIN_D3               -1
+#define ESP_SD_PIN_D4               -1
+#define ESP_SD_PIN_D5               -1
+#define ESP_SD_PIN_D6               -1
+#define ESP_SD_PIN_D7               -1
+#define ESP_SD_PIN_CD               -1
+#define ESP_SD_PIN_WP               -1
 
 /**
- * @brief Audio Codec Chip Function Definition
+ * @brief  Audio Codec Chip Function Definition
  */
-#define FUNC_AUDIO_CODEC_EN         (1)
-#define PA_ENABLE_GPIO              GPIO_NUM_46
-#define HEADPHONE_DETECT            (-1)
-#define CODEC_ADC_I2S_PORT          (0)
-#define CODEC_ADC_BITS_PER_SAMPLE   I2S_BITS_PER_SAMPLE_32BIT
-#define CODEC_ADC_SAMPLE_RATE       (48000)
-#define RECORD_HARDWARE_AEC         (true)
-#define BOARD_PA_GAIN               (0) /* Power amplifier gain defined by board (dB) */
+#define FUNC_AUDIO_CODEC_EN       (1)
+#define CODEC_ADC_I2S_PORT        ((i2s_port_t)0)
+#define CODEC_ADC_BITS_PER_SAMPLE ((i2s_data_bit_width_t)32)  /* 32bit */
+#define CODEC_ADC_SAMPLE_RATE     (48000)
+#define RECORD_HARDWARE_AEC       (true)
+#define BOARD_PA_GAIN             (6)  /* Power amplifier gain defined by board (dB) */
+#define HEADPHONE_DETECT          (-1)
+#define PA_ENABLE_GPIO            GPIO_NUM_38
+#define ES8311_MCLK_SOURCE        (0)  /* 0 From MCLK of esp32   1 From BCLK */
+#define ES7210_MIC_SELECT         (ES7210_INPUT_MIC1 | ES7210_INPUT_MIC2 | ES7210_INPUT_MIC3)
 
 extern audio_hal_func_t AUDIO_CODEC_ES8311_DEFAULT_HANDLE;
 extern audio_hal_func_t AUDIO_CODEC_ES7210_DEFAULT_HANDLE;
@@ -72,29 +75,51 @@ extern audio_hal_func_t AUDIO_CODEC_ES7210_DEFAULT_HANDLE;
         },                                              \
 };
 
+
 /**
  * @brief Button Function Definition
  */
 #define FUNC_BUTTON_EN              (1)
-#define INPUT_KEY_NUM               (2)
-#define BUTTON_VOLUP_ID             (-1)
-#define BUTTON_VOLDOWN_ID           (-1)
-#define BUTTON_SET_ID               (-1)
-#define BUTTON_PLAY_ID              (0)
-#define BUTTON_MODE_ID              (-1)
-#define BUTTON_REC_ID               (1)
+#define INPUT_KEY_NUM               6
+#define BUTTON_VOLUP_ID             0
+#define BUTTON_VOLDOWN_ID           1
+#define BUTTON_SET_ID               2
+#define BUTTON_PLAY_ID              3
+#define BUTTON_MODE_ID              4
+#define BUTTON_REC_ID               5
 
-#define INPUT_KEY_DEFAULT_INFO() {                     \
-    {                                                  \
-        .type = PERIPH_ID_BUTTON,                      \
-        .user_id = INPUT_KEY_USER_ID_REC,              \
-        .act_id = BUTTON_REC_ID,                       \
-    },                                                 \
-    {                                                  \
-        .type = PERIPH_ID_BUTTON,                      \
-        .user_id = INPUT_KEY_USER_ID_PLAY,             \
-        .act_id = BUTTON_PLAY_ID,                      \
-    }                                                  \
+#define INPUT_KEY_DEFAULT_INFO() {                      \
+     {                                                  \
+        .type = PERIPH_ID_ADC_BTN,                      \
+        .user_id = INPUT_KEY_USER_ID_REC,               \
+        .act_id = BUTTON_REC_ID,                        \
+    },                                                  \
+    {                                                   \
+        .type = PERIPH_ID_ADC_BTN,                      \
+        .user_id = INPUT_KEY_USER_ID_MUTE,              \
+        .act_id = BUTTON_MODE_ID,                       \
+    },                                                  \
+    {                                                   \
+        .type = PERIPH_ID_ADC_BTN,                      \
+        .user_id = INPUT_KEY_USER_ID_SET,               \
+        .act_id = BUTTON_SET_ID,                        \
+    },                                                  \
+    {                                                   \
+        .type = PERIPH_ID_ADC_BTN,                      \
+        .user_id = INPUT_KEY_USER_ID_PLAY,              \
+        .act_id = BUTTON_PLAY_ID,                       \
+    },                                                  \
+    {                                                   \
+        .type = PERIPH_ID_ADC_BTN,                      \
+        .user_id = INPUT_KEY_USER_ID_VOLUP,             \
+        .act_id = BUTTON_VOLUP_ID,                      \
+    },                                                  \
+    {                                                   \
+        .type = PERIPH_ID_ADC_BTN,                      \
+        .user_id = INPUT_KEY_USER_ID_VOLDOWN,           \
+        .act_id = BUTTON_VOLDOWN_ID,                    \
+    }                                                   \
 }
+
 #endif
 // clang-format on
