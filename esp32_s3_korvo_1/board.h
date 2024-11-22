@@ -29,7 +29,6 @@
 #include "audio_volume.h"
 #include "board_def.h"
 #include "board_pins_config.h"
-#include "display_service.h"
 #include "esp_peripherals.h"
 #include "periph_sdcard.h"
 
