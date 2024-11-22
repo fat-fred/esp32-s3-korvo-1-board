@@ -47,12 +47,14 @@ audio_board_handle_t audio_board_init(void) {
   return board_handle;
 }
 
-audio_hal_handle_t audio_board_adc_init(void) {
-  audio_hal_codec_config_t audio_codec_cfg = AUDIO_CODEC_DEFAULT_CONFIG();
-  audio_hal_handle_t adc_hal = NULL;
-  adc_hal = audio_hal_init(&audio_codec_cfg, &AUDIO_CODEC_ES7210_DEFAULT_HANDLE);
-  AUDIO_NULL_CHECK(TAG, adc_hal, return NULL);
-  return adc_hal;
+audio_hal_handle_t audio_board_adc_init(void)
+{
+    audio_hal_codec_config_t audio_codec_cfg = AUDIO_CODEC_DEFAULT_CONFIG();
+    audio_codec_cfg.codec_mode = AUDIO_HAL_CODEC_MODE_ENCODE;
+    audio_hal_handle_t adc_hal = NULL;
+    adc_hal = audio_hal_init(&audio_codec_cfg, &AUDIO_CODEC_ES7210_DEFAULT_HANDLE);
+    AUDIO_NULL_CHECK(TAG, adc_hal, return NULL);
+    return adc_hal;
 }
 
 audio_hal_handle_t audio_board_codec_init(void) {
@@ -77,13 +79,22 @@ esp_err_t audio_board_get_volume(audio_board_handle_t board_handle, int *volume)
   return audio_hal_get_volume(board_handle->audio_hal, volume);
 }
 
-esp_err_t audio_board_key_init(esp_periph_set_handle_t set) {
-  periph_button_cfg_t btn_cfg = {
-      .gpio_mask = (1ULL << get_input_rec_id()) | (1ULL << get_input_play_id()),  // REC BTN & PLAY BTN
-  };
-  esp_periph_handle_t button_handle = periph_button_init(&btn_cfg);
-  AUDIO_NULL_CHECK(TAG, button_handle, return ESP_ERR_ADF_MEMORY_LACK);
-  return esp_periph_start(set, button_handle);
+esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
+{
+    periph_adc_button_cfg_t adc_btn_cfg = PERIPH_ADC_BUTTON_DEFAULT_CONFIG();
+    adc_arr_t adc_btn_tag = ADC_DEFAULT_ARR();
+    adc_btn_tag.total_steps = 6;
+    adc_btn_tag.adc_ch = ADC1_CHANNEL_4;
+    int btn_array[7] = {190, 600, 1000, 1375, 1775, 2195, 3000};
+    adc_btn_tag.adc_level_step = btn_array;
+    adc_btn_cfg.arr = &adc_btn_tag;
+    adc_btn_cfg.arr_size = 1;
+    if (audio_mem_spiram_stack_is_enabled()) {
+        adc_btn_cfg.task_cfg.ext_stack = true;
+    }
+    esp_periph_handle_t adc_btn_handle = periph_adc_button_init(&adc_btn_cfg);
+    AUDIO_NULL_CHECK(TAG, adc_btn_handle, return ESP_ERR_ADF_MEMORY_LACK);
+    return esp_periph_start(set, adc_btn_handle);
 }
 
 esp_err_t audio_board_sdcard_init(esp_periph_set_handle_t set, periph_sdcard_mode_t mode) {
