@@ -24,11 +24,10 @@
 
 #include "esp_log.h"
 #include "audio_mem.h"
-// #include "audio_volume.h"
+#include "audio_volume.h"
 #include "periph_button.h"
 #include "periph_sdcard.h"
 #include "periph_adc_button.h"
-#include "tca9554.h"
 #include "board.h"
 
 static const char *TAG = "AUDIO_BOARD";
