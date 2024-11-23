@@ -39,7 +39,7 @@
 #define ESP_SD_PIN_D0               GPIO_NUM_16
 #define ESP_SD_PIN_D1               -1
 #define ESP_SD_PIN_D2               -1
-#define ESP_SD_PIN_D3               -1
+#define ESP_SD_PIN_D3               GPIO_NUM_15
 #define ESP_SD_PIN_D4               -1
 #define ESP_SD_PIN_D5               -1
 #define ESP_SD_PIN_D6               -1
