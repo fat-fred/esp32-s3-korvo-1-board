@@ -38,9 +38,9 @@ esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config) {
   if (port == I2C_NUM_0) {
     i2c_config->sda_io_num = GPIO_NUM_1;
     i2c_config->scl_io_num = GPIO_NUM_2;
-#  } else if (port == I2C_NUM_1) {
-#    i2c_config->sda_io_num = GPIO_NUM_41;
-#    i2c_config->scl_io_num = GPIO_NUM_40;  
+//  } else if (port == I2C_NUM_1) {
+//    i2c_config->sda_io_num = GPIO_NUM_41;
+//    i2c_config->scl_io_num = GPIO_NUM_40;  
   } else {
     i2c_config->sda_io_num = -1;
     i2c_config->scl_io_num = -1;
