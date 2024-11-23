@@ -48,20 +48,22 @@ audio_board_handle_t audio_board_init(void) {
 
 audio_hal_handle_t audio_board_adc_init(void)
 {
-    audio_hal_codec_config_t audio_codec_cfg = AUDIO_CODEC_DEFAULT_CONFIG();
-    audio_codec_cfg.codec_mode = AUDIO_HAL_CODEC_MODE_ENCODE;
-    audio_hal_handle_t adc_hal = NULL;
-    adc_hal = audio_hal_init(&audio_codec_cfg, &AUDIO_CODEC_ES7210_DEFAULT_HANDLE);
+    ESP_LOGD(TAG, "Initializing the adc");
+    audio_hal_codec_config_t audio_codec_cfg = AUDIO_CODEC_ES7210_CONFIG();
+    audio_hal_handle_t adc_hal = audio_hal_init(&audio_codec_cfg, &AUDIO_CODEC_ES7210_DEFAULT_HANDLE);
     AUDIO_NULL_CHECK(TAG, adc_hal, return NULL);
     return adc_hal;
 }
 
-audio_hal_handle_t audio_board_codec_init(void) {
-  audio_hal_codec_config_t audio_codec_cfg = AUDIO_CODEC_DEFAULT_CONFIG();
-  audio_hal_handle_t codec_hal = audio_hal_init(&audio_codec_cfg, &AUDIO_CODEC_ES8311_DEFAULT_HANDLE);
-  AUDIO_NULL_CHECK(TAG, codec_hal, return NULL);
-  return codec_hal;
+audio_hal_handle_t audio_board_codec_init(void)
+{
+    ESP_LOGD(TAG, "Initializing the codec");
+    audio_hal_codec_config_t audio_codec_cfg = AUDIO_CODEC_ES8311_CONFIG();
+    audio_hal_handle_t codec_hal = audio_hal_init(&audio_codec_cfg, &AUDIO_CODEC_ES8311_DEFAULT_HANDLE);
+    AUDIO_NULL_CHECK(TAG, codec_hal, return NULL);
+    return codec_hal;
 }
+
 esp_err_t audio_board_set_volume(audio_board_handle_t board_handle, int volume) {
   if (!board_handle || !board_handle->audio_hal) {
     ESP_LOGE(TAG, "Invalid board or audio HAL handle");
