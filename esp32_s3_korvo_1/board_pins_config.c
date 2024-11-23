@@ -53,17 +53,17 @@ esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config) {
 esp_err_t get_i2s_pins(i2s_port_t port, i2s_pin_config_t *i2s_config) {
   AUDIO_NULL_CHECK(TAG, i2s_config, return ESP_FAIL);
   if (port == I2S_NUM_0) {
-    i2s_config->bck_io_num = GPIO_NUM_40;
-    i2s_config->ws_io_num = GPIO_NUM_41;
-    i2s_config->data_out_num = GPIO_NUM_39;
-    i2s_config->data_in_num = GPIO_NUM_NC;
-    i2s_config->mck_io_num = GPIO_NUM_42;
-  } else if (port == I2S_NUM_1) {
     i2s_config->bck_io_num = GPIO_NUM_10;
     i2s_config->ws_io_num = GPIO_NUM_9;
     i2s_config->data_out_num = GPIO_NUM_NC;
     i2s_config->data_in_num = GPIO_NUM_11;
     i2s_config->mck_io_num = GPIO_NUM_20;
+  } else if (port == I2S_NUM_1) {
+    i2s_config->bck_io_num = GPIO_NUM_40;
+    i2s_config->ws_io_num = GPIO_NUM_41;
+    i2s_config->data_out_num = GPIO_NUM_39;
+    i2s_config->data_in_num = GPIO_NUM_NC;
+    i2s_config->mck_io_num = GPIO_NUM_42;
   } else {
     memset(i2s_config, -1, sizeof(i2s_pin_config_t));
     ESP_LOGE(TAG, "I2S PORT %d is not supported, please use I2S PORT 0", port);
