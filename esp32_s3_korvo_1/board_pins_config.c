@@ -53,13 +53,13 @@ esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config)
 esp_err_t get_i2s_pins(int port, board_i2s_pin_t *i2s_config)
 {
     AUDIO_NULL_CHECK(TAG, i2s_config, return ESP_FAIL);
-    if (port == I2S_NUM_0) { // Codec
+    if (port == 0) { // Codec
         i2s_config->bck_io_num = GPIO_NUM_40;
         i2s_config->ws_io_num = GPIO_NUM_41;
         i2s_config->data_out_num = GPIO_NUM_39;
         i2s_config->data_in_num = GPIO_NUM_NC;
         i2s_config->mck_io_num = GPIO_NUM_42;
-    } else if (port == I2S_NUM_1) { // ADC
+    } else if (port == 1) { // ADC
         i2s_config->bck_io_num = GPIO_NUM_10;
         i2s_config->ws_io_num = GPIO_NUM_9;
         i2s_config->data_out_num = GPIO_NUM_NC;
